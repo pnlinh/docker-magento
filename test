@@ -10,7 +10,7 @@ test() {
 
   echo "Running tests for ${IMAGE}:${TAG}..."
 
-  $DOCKER_RUN sh -c "php -v | grep '$VERSION'"
+  $DOCKER_RUN sh -c "php -v | grep \"$VERSION\""
   $DOCKER_RUN sh -c "php -v | grep OPcache"
   $DOCKER_RUN sh -c "nginx -t"
 }

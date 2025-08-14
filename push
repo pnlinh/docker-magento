@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+TAGS=("php7.2" "php7.4" "php8.0" "php8.1")
+IMAGE="pnlinh/magento"
+GHCR_IMAGE="ghcr.io/pnlinh/magento"
+
+echo "Starting to push Docker images..."
+
+for TAG in "${TAGS[@]}"; do
+  echo "Pushing ${IMAGE}:${TAG}..."
+  docker push "${IMAGE}:${TAG}"
+
+  echo "Pushing ${GHCR_IMAGE}:${TAG}..."
+  docker push "${GHCR_IMAGE}:${TAG}"
+done
+
+echo "All images pushed successfully!"

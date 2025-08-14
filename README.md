@@ -1,6 +1,6 @@
 # Docker PHP-FPM & Nginx base on Alpine Linux
 
-Simple docker image for Magento development
+Lightweight docker image for Magento development
 
 ### Why should use this image
 
@@ -9,9 +9,9 @@ Simple docker image for Magento development
 - Multi-platform, supporting AMD4, ARMv6, ARMv7, ARM64
 - Use [runit](http://smarden.org/runit/) instead
   of [supervisor](http://supervisord.org/)
-- Very small Docker image size
+- Tiny Docker image size
 
-### PHP version support
+### PHP versions supported
 
 - [x] PHP 7.2
 - [x] PHP 7.4
@@ -40,20 +40,18 @@ docker run --name=app -v /path/to/project:/var/www/html -p 80:80 pnlinh/magento:
 
 - With docker-compose
 
-```
-version: '3.4'
-
+```yaml
 services:
-    app:
-        image: pnlinh/magento:php8.1
-        hostname: magento-app
-        container_name: magento-app
-        ports:
-            - "80:80"
-        volumes:
-            - .:/var/www/html
-        networks:
-            - localnet
+  app:
+    image: pnlinh/magento:php8.1
+    hostname: magento-app
+    container_name: magento-app
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+    networks:
+      - localnet
 ```
 
 - See PHP version info
@@ -66,12 +64,8 @@ docker run --name=app --rm -p 80:80 pnlinh/magento:php8.1
 
 ![image](https://user-images.githubusercontent.com/26193890/164198187-743e3585-1379-4d06-a2d5-34330b17d060.png)
 
-### Useful images
-
-- PHP/Laravel: https://github.com/pnlinh/docker-php
-- Symfony: https://github.com/pnlinh/docker-php/tree/feature/symfony
-
 ### References
 
-- https://github.com/TrafeX/docker-php-nginx
-- https://bolshov.online/docker/2020/11/18/runit-vs-supervisor
+- [TrafeX/docker-php-nginx](https://github.com/TrafeX/docker-php-nginx)
+- [Runit vs Supervisor](https://bolshov.online/docker/2020/11/18/runit-vs-supervisor)
+- [Add trusted root CA to Alpine](https://stackoverflow.com/questions/67231714/how-to-add-trusted-root-ca-to-docker-alpine/67232164#67232164)

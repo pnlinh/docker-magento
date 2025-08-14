@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+IMAGE="pnlinh/magento"
+
+test() {
+  local TAG="$1"
+  local DOCKER_RUN="docker run --rm ${IMAGE}:${TAG}"
+  # Extract version by removing 'php' prefix
+  local VERSION="${TAG#php}"
+
+  echo "Running tests for ${IMAGE}:${TAG}..."
+
+  $DOCKER_RUN sh -c "php -v | grep '$VERSION'"
+  $DOCKER_RUN sh -c "php -v | grep OPcache"
+  $DOCKER_RUN sh -c "nginx -t"
+}
+
+test "php8.1"
+test "php8.0"
+test "php7.4"
+test "php7.2"

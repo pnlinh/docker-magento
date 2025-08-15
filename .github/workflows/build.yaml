@@ -43,6 +43,7 @@ jobs:
           ./build php7.4
           ./build php8.0
           ./build php8.1
+          ./build php8.2
 
       - name: Test image
         run: |-

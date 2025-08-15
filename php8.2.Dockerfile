@@ -1,7 +1,7 @@
 ARG ALPINE_VERSION=3.19.8
 FROM alpine:${ALPINE_VERSION}
 LABEL Maintainer="Ngoc Linh Pham <pnlinh1207@gmail.com>"
-LABEL Description="Lightweight container with Nginx 1.20 & PHP 8.1 based on Alpine Linux."
+LABEL Description="Lightweight container with Nginx 1.20 & PHP 8.2 based on Alpine Linux."
 
 # Setup document root
 WORKDIR /var/www/html
@@ -31,7 +31,6 @@ RUN apk add --no-cache \
   php82-simplexml \
   php82-redis \
   php82-pdo_mysql \
-  php82-pdo_pgsql \
   php82-pdo_sqlite \
   php82-soap \
   php82-pecl-apcu \

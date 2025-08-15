@@ -15,6 +15,7 @@ test() {
   $DOCKER_RUN sh -c "nginx -t"
 }
 
+test "php8.2"
 test "php8.1"
 test "php8.0"
 test "php7.4"

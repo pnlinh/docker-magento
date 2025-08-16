@@ -31,7 +31,6 @@ RUN apk add --no-cache \
   php81-simplexml \
   php81-redis \
   php81-pdo_mysql \
-  php81-pdo_pgsql \
   php81-pdo_sqlite \
   php81-soap \
   php81-pecl-apcu \
@@ -41,8 +40,6 @@ RUN apk add --no-cache \
   curl \
   nginx \
   runit
-
-# Install XDebug
 
 # Create symlink so programs depending on `php` still function
 RUN cp /usr/bin/php81 /usr/bin/php

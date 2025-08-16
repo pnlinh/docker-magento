@@ -39,15 +39,18 @@ jobs:
 
       - name: Build image
         run: |-
-          ./build php7.2
+          set -e
+          
           ./build php7.4
           ./build php8.0
           ./build php8.1
+          ./build php8.2
 
       - name: Test image
         run: |-
           ./test
 
       - name: Push image to Docker Hub and GitHub Container Registry
+        if: github.ref == 'refs/heads/main'
         run: |-
           ./push

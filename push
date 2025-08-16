@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 TAGS=("php7.2" "php7.4" "php8.0" "php8.1" "php8.2")
 IMAGE="pnlinh/magento"
 GHCR_IMAGE="ghcr.io/pnlinh/magento"

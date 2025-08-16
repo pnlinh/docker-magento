@@ -39,6 +39,8 @@ jobs:
 
       - name: Build image
         run: |-
+          set -e
+          
           ./build php7.2
           ./build php7.4
           ./build php8.0

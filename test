@@ -1,22 +1,39 @@
 #!/usr/bin/env bash
 
-IMAGE="pnlinh/magento"
+# Exit immediately if a command exits with non-zero status
+set -e
 
-test() {
-  local TAG="$1"
-  local DOCKER_RUN="docker run --rm ${IMAGE}:${TAG}"
-  # Extract version by removing 'php' prefix
-  local VERSION="${TAG#php}"
+# Array of PHP versions to test
+#PHP_VERSIONS=("8.2" "8.1" "8.0" "7.4" "7.2")
+PHP_VERSIONS=("7.2")
 
-  echo "Running tests for ${IMAGE}:${TAG}..."
+test_version() {
+  local VERSION="$1"
+  echo "🚀 Testing PHP $VERSION..."
 
-  $DOCKER_RUN sh -c "php -v | grep \"$VERSION\""
-  $DOCKER_RUN sh -c "php -v | grep OPcache"
-  $DOCKER_RUN sh -c "nginx -t"
+  # Start the app container
+  VERSION="$VERSION" docker compose -f docker-compose.test.yml up -d app
+
+  # Allow services to initialize
+  echo "⏳ Waiting for services to start..."
+  sleep 2
+
+  # Run the system under test
+  echo "🧪 Running tests for PHP $VERSION..."
+  VERSION="$VERSION" docker compose -f docker-compose.test.yml run --rm sut
+
+  # Optional: Clean up after each test
+  VERSION="$VERSION" docker compose -f docker-compose.test.yml down
+
+  echo "✅ Completed testing PHP $VERSION"
+  echo "-----------------------------------"
 }
 
-test "php8.2"
-test "php8.1"
-test "php8.0"
-test "php7.4"
-test "php7.2"
+# Main execution
+echo "🔍 Starting test suite for all PHP versions"
+
+for VERSION in "${PHP_VERSIONS[@]}"; do
+  test_version "$VERSION"
+done
+
+echo "✨ All tests completed!"

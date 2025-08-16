@@ -1,0 +1,13 @@
+services:
+  app:
+    image: pnlinh/magento:php${VERSION}
+    build: .
+  sut:
+    image: alpine:3.21
+    depends_on:
+      - app
+    command: /tmp/run_tests.sh
+    environment:
+      - VERSION=${VERSION}
+    volumes:
+      - "./run_tests.sh:/tmp/run_tests.sh"

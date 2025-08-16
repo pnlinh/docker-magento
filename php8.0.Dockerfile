@@ -42,8 +42,6 @@ RUN apk add --no-cache \
   nginx \
   runit
 
-# Install XDebug
-
 # Create symlink so programs depending on `php` still function
 RUN cp /usr/bin/php8 /usr/bin/php
 

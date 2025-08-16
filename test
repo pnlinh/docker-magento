@@ -4,8 +4,7 @@
 set -e
 
 # Array of PHP versions to test
-#PHP_VERSIONS=("8.2" "8.1" "8.0" "7.4" "7.2")
-PHP_VERSIONS=("7.2")
+PHP_VERSIONS=("8.2" "8.1" "8.0" "7.4")
 
 test_version() {
   local VERSION="$1"

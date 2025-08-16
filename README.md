@@ -13,7 +13,6 @@ Lightweight docker image for Magento development
 
 ### PHP versions supported
 
-- [x] PHP 7.2
 - [x] PHP 7.4
 - [x] PHP 8.0
 - [x] PHP 8.1 (recommend usage)
@@ -24,7 +23,6 @@ Lightweight docker image for Magento development
 - Build image
 
 ```shell
-./build php7.2 # Build image with php 7.2
 ./build php7.4 # Build image with php 7.4
 ./build php8.0 # Build image with php 8.0
 ./build php8.1 # Build image with php 8.1

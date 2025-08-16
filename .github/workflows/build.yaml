@@ -6,6 +6,8 @@ on:
     paths:
       - config
       - src
+  pull_request:
+    branches: [main]
 
 jobs:
   build:
@@ -49,5 +51,6 @@ jobs:
           ./test
 
       - name: Push image to Docker Hub and GitHub Container Registry
+        if: github.ref == 'refs/heads/main'
         run: |-
           ./push

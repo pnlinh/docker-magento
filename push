@@ -12,6 +12,9 @@ for TAG in "${TAGS[@]}"; do
   echo "Pushing ${IMAGE}:${TAG}..."
   docker push "${IMAGE}:${TAG}"
 
+  echo "Tagging ${IMAGE}:${TAG} as ${GHCR_IMAGE}:${TAG}..."
+  docker tag "${IMAGE}:${TAG}" "${GHCR_IMAGE}:${TAG}"
+
   echo "Pushing ${GHCR_IMAGE}:${TAG}..."
   docker push "${GHCR_IMAGE}:${TAG}"
 done
